@@ -1,0 +1,155 @@
+/**  Diseño de la Pagina  **/
+
+html{
+    background-color: #F1F1F1;
+}
+
+body{
+    background-color: #fff;
+    margin: 0px;
+    min-width: 1000px !important;
+}
+
+#cabecera{
+    height: 70px;
+    overflow: hidden;
+    padding-left: 50px;
+    background: url(../img/maquetado/fondo_cabecera.png) 0px 0px repeat-x;
+}
+
+#cabecera h1 {
+    font-size: 30px;
+    padding: 10px 8px 15px;
+    margin: 0;
+    float: left;
+    color: #fff;
+}
+
+#pie {
+    border-top: 4px solid #222;
+    color: black;
+    padding: 10px;
+    height: 100px;
+    background: url(../img/maquetado/fondo_pie.png) 0px 0px repeat-x;
+}
+
+#contenido{
+    min-height: 300px;
+    padding: 20px
+}
+
+
+/** Diseño del Menu  **/
+
+#menu_horizontal{
+    height: 33px;
+    margin-top: 10px;
+    padding-top: 3px;
+    border-top: 2px solid #bbb;
+    border-bottom: 2px solid #bbb;
+    background: url(../img/maquetado/fondo_menu.png) 0px 50% repeat-x;
+}
+
+#menu_horizontal>ul {
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+    margin-left: 50px;
+    min-height: 30px;
+}
+
+#menu_horizontal>ul>li:hover ul {
+    display: block !important;
+}
+
+#menu_horizontal a{
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    padding: 5px 15px 5px 15px;
+    height: 22px;
+    border: none;
+}
+
+#menu_horizontal>ul>li>a{
+    height: 30px;    
+}
+
+#menu_horizontal a:hover{
+    color: red;
+}
+
+#menu_horizontal > ul > li{
+    display: inline-block;
+    float: left;
+    min-width: 60px;
+    text-align: center;
+    position: relative;
+}
+
+#menu_horizontal ul li ul a{
+    min-width: 100px;
+    z-index: 90;
+}
+
+#menu_horizontal ul li ul{
+    position: absolute;
+    list-style: none;
+    top:37px;
+    text-align: left;
+    padding: 5px 10px 5px 20px;
+    left: -3px;
+    white-space: nowrap;
+    border-top: none;
+    z-index: 100;
+    background-color: white;
+    border: 1px solid #444;
+}
+
+#menu_horizontal .menu_salir{
+    float: right;
+    margin-right: 20px;
+}
+
+/** Generales **/
+.clear {
+    clear: both;
+}
+
+/****** FORMULARIO DE LOGUEO ******/
+
+#form_logueo {
+    width: 340px; 
+    margin: 0px auto;
+    background-color: #E6E6E6;
+    border-radius: 10px;
+    margin-top: 50px;
+    padding: 20px;
+    border: 1px solid #333;
+    box-shadow: -7px 14px 20px 3px;
+}
+
+#form_logueo h3{
+    margin: 5px;
+    padding: 0px;
+}
+
+#form_logueo table{
+    margin: 0px auto;   
+}    
+
+#form_logueo label{
+    width: 100px;
+    display: block;
+}
+
+#form_logueo input[type=text],
+#form_logueo input[type=password]{
+    width: 200px;
+}
+
+#form_logueo input[type=submit]{
+    float: right;
+}
+
+/****** FORMULARIO DE LOGUEO ******/

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta http-equiv='Content-type' content='text/html; charset=<?php echo APP_CHARSET ?>' />
+        <title><?php echo Config::get('config.application.name') ?></title>
+        <?php Tag::css('scaffold') ?>
+        <?php Tag::css('backend') ?>
+        <?php View::partial('css') ?>
+        <?php View::partial('js') ?>
+    </head>
+    <body>
+        <div id='cabecera'>
+            <h1>Nombre de la App</h1>
+        </div>
+        <div id="contenido">
+            <b>ERROR 404</b> pagina no encontrada
+        </div>
+        <div id="pie">
+        </div>
+    </body>
+</html>
+

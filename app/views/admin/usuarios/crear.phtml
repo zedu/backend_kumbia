@@ -1,0 +1,39 @@
+<div id="scaffold_form">
+    <h1>Crear Usuario</h1>
+    <div id="mensajes_flash" >        
+        <?php View::content() ?>
+    </div>
+    <?php echo Form::open() ?>
+    <?php echo Form::hidden('usuario.id') ?>
+    <table>
+        <tr>
+            <td><label for="usuario_login">Nombre de Usuario (Login)* : </label></td>
+            <td><?php echo Form::text('usuario.login') ?></td>            
+        </tr>
+        <tr>
+            <td><label for="usuario_clave">Contrase&ntilde;a* : </label></td>
+            <td><?php echo Form::pass('usuario.clave') ?></td>            
+        </tr>
+        <tr>
+            <td><label for="usuario_clave2">Volver a escribir Contrase&ntilde;a* : </label></td>
+            <td><?php echo Form::pass('usuario.clave2') ?></td>            
+        </tr>
+        <tr>
+            <td><label for="usuario_nombres">Nombre Completo* : </label></td>
+            <td><?php echo Form::text('usuario.nombres') ?></td>            
+        </tr>
+        <tr>
+            <td><label for="usuario_email">Correo Electronico* : </label></td>
+            <td><?php echo Form::text('usuario.email') ?></td>            
+        </tr>
+        <tr>
+            <td><label for="usuario_roles_id">Rol del Usuario* : </label></td>
+            <td><?php echo Form::dbSelect('usuario.roles_id', 'rol') ?></td>            
+        </tr>
+    </table>
+    <div class="actions">
+        <?php echo Form::submit('Guardar Datos','class="add"') ?>
+        <?php echo Form::submit('Cancelar','name="cancelar"') ?>
+    </div>
+    <?php echo Form::close() ?>
+</div>

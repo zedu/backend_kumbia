@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta http-equiv='Content-type' content='text/html; charset=<?php echo APP_CHARSET ?>' />
+        <title><?php echo Config::get('config.application.name') ?></title>
+        <?php View::partial('css') ?>
+        <?php View::partial('js') ?>
+    </head>
+    <body>
+        <div id='cabecera'>
+            <h1>Modulo de Administracion</h1>
+        </div>
+        <div id="menu_horizontal">
+            <?php View::renderMenu($module_name,$controller_name,$action_name) ?>
+        </div>
+        <div id="contenido">
+            <?php View::content(); ?>
+        </div>
+        <div id="pie">
+        </div>
+    </body>
+</html>

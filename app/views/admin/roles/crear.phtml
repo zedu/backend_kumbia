@@ -1,0 +1,60 @@
+<div id="scaffold_form">
+    <h1><?php eh($titulo) ?></h1>
+    <div id="mensajes_flash" >        
+        <?php View::content() ?>
+    </div>
+    <?php echo Form::open() ?>
+    <?php echo Form::hidden('rol.id') ?>
+    <table>
+        <tr>
+            <td><label for="rol_rol">Nombre del rol* : </label></td>
+            <td><?php echo Form::text('rol.rol') ?></td>            
+        </tr>
+        <tr>
+            <td><label for="rol_plantilla">Plantilla a Usar : </label></td>
+            <td><?php echo Form::text('rol.plantilla') ?></td>            
+        </tr>
+        <tr>
+            <td><label for="menu2.roles_id">Padres del rol : </label></td>
+            <td id="select_padres">
+                <?php echo Form::dbSelect('menu2.roles_id', 'rol') ?>
+                <div id="roles_padres">
+                </div>
+            </td>            
+        </tr>
+        <tr>
+            <td><label for="menus_activo">Activo (Visible) : </label></td>
+            <td><?php echo Form::select('menus.activo', array('1' => 'Si', '0' => 'No')) ?></td>            
+        </tr>
+    </table>
+    <div class="actions">
+        <?php echo Form::submit('Guardar Datos') ?>
+        <?php echo Form::submit('Cancelar', 'name="cancelar"') ?>
+    </div>
+    <?php echo Form::close() ?>
+</div>
+<script type="text/javascript">
+    $(function(){
+        var url = $.KumbiaPHP.publicPath + "admin/roles/agregar_padre/";
+        $("#select_padres select").live('change',function(){
+            var padre = $('option:selected',this).text();
+            if ( $("#roles_padres").html().indexOf(padre) < 0 &&
+                $('option:selected',this).val() != "<?php @eh($rol->id) ?>" ) {
+                $.post(url + $('option:selected',this).val(),{},function(data){
+                    $("#roles_padres").append(data);
+                });
+            }
+        });
+        
+        $("#roles_padres .rol_padre span").live('click',function(){
+            $(this).parent().remove();
+        });
+<?php if (isset($rol) and $rol->padres) : ?>
+    <?php foreach (explode(',', $rol->padres) as $e) : ?>
+                    $.post(url + <?php eh($e) ?>,{},function(data){
+                        $("#roles_padres").append(data);                
+                    });
+    <?php endforeach ?>
+<?php endif ?>
+    });
+</script>              

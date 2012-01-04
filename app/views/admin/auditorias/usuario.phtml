@@ -1,0 +1,38 @@
+<h1>Auditorias del Sistema</h1>
+<div id="mensajes_flash" >        
+    <?php View::content() ?>
+</div> 
+<div class="form_filtro">
+    <?php echo Form::open('admin/auditorias/resultados_usuario/' . $usuario->id) ?>
+    <table>
+        <tr>
+            <td>
+                <label for="">Tabla Afectada</label>
+                <?php echo Form::select('filtro.tabla_afectada', $tablas_afectadas) ?>
+            </td>
+            <td>
+                <label for="">Fecha</label>
+                <?php echo Form::date('filtro.fecha_at') ?>
+            </td>
+            <td>
+                <label for="">Acci&oacute;n Realizada</label>
+                <?php echo Form::text('filtro.accion_realizada') ?>
+            </td>
+            <td style="width: 100px;white-space: nowrap;">
+                <?php echo Form::submit('Aplicar Filtro') ?>                
+                <?php echo Html::linkAction('usuario/' . $usuario->id, 'Mostrar Todos') ?>                
+            </td>
+    </table>
+    <?php echo Form::close() ?>
+</div>
+<div id="scaffold">
+    <?php
+    Table::headers('Accion Realizada', 'Fecha y Hora', 'Tabla Afectada');
+    Table::fields('accion_realizada', 'fecha_at', 'tabla_afectada');
+    Table::url($url);
+    echo Table::create($auditorias);
+    ?>
+</div>
+<div class="actions">
+    <a href="../">Volver</a>
+</div>

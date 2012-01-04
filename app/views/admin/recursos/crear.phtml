@@ -1,0 +1,40 @@
+<div id="scaffold_form">
+    <h1><?php eh($titulo) ?></h1>
+    <div id="mensajes_flash" >        
+        <?php View::content() ?>
+    </div>
+    <?php echo Form::open() ?>
+    <?php echo Form::hidden('recurso.id') ?>
+    <table>
+        <tr>
+            <td><label for="recurso_modulo">Modulo : </label></td>
+            <td><label for="recurso_controlador">Controlador * :</label></td>
+            <td><label for="recurso_accion">Accion  : </label></td>
+        </tr>
+        <tr>
+            <td class="input_pequenios"><?php echo Form::text('recurso.modulo') ?></td>   
+            <td class="input_pequenios"><?php echo Form::text('recurso.controlador') ?></td>   
+            <td class="input_pequenios"><?php echo Form::text('recurso.accion') ?></td>   
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td><label for="recurso_descripcion">Descripcion * : </label></td>
+            <td><?php echo Form::textarea('recurso.descripcion') ?></td>            
+        </tr>
+        <tr>
+            <td><label for="menus_activo">Activo (Visible) : </label></td>
+            <td><?php echo Form::select('menus.activo', array('1' => 'Si', '0' => 'No')) ?></td>            
+        </tr>
+    </table>
+    <div class="actions">
+        <?php echo Form::submit('Guardar Datos') ?>
+        <?php echo Form::submit('Cancelar', 'name="cancelar"') ?>
+    </div>
+    <?php echo Form::close() ?>
+</div>
+<style type="text/css">
+    .input_pequenios input{
+        width: 150px !important;
+    }
+</style>
