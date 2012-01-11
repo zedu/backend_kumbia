@@ -613,7 +613,7 @@ label {
   font-size: 13px;
   line-height: 18px;
   float: left;
-  width: 130px;
+  min-width: 200px;
   text-align: right;
   color: #404040;
 }
