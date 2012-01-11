@@ -14,7 +14,7 @@
     Table::imgLinkConfirm('figuras/eliminar.png','admin/roles/eliminar', 
             '','¿Realmente desea Eliminar Este Rol?');
     //Table::link('admin/usuarios/editar', 'Editar');
-    echo Table::create($roles);
+    echo Table::create($roles, 'class="zebra-striped bordered-table"');
     ?>
     <div class="actions">
         <?php echo Html::linkAction("crear", 'Crear Rol') ?>

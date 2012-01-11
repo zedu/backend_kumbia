@@ -12,7 +12,7 @@
     Table::imgLink('figuras/circulo_verde.png|figuras/circulo_rojo.png', 'admin/recursos/desactivar|admin/recursos/activar', '', 'activo');
     Table::imgLink('figuras/editar.png', 'admin/recursos/editar');
     Table::imgLinkConfirm('figuras/eliminar.png', 'admin/recursos/eliminar', '', '¿Realmente desea Eliminar Este Recurso?');
-    echo Table::create($recursos);
+    echo Table::create($recursos, 'class="zebra-striped bordered-table"');
     ?>
     <div class="actions">
     <?php echo Html::linkAction("crear", 'Crear Recurso') ?>

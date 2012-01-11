@@ -30,7 +30,7 @@
     Table::headers('Accion Realizada', 'Fecha y Hora', 'Tabla Afectada');
     Table::fields('accion_realizada', 'fecha_at', 'tabla_afectada');
     Table::url($url);
-    echo Table::create($auditorias);
+    echo Table::create($auditorias, 'class="zebra-striped bordered-table"');
     ?>
 </div>
 <div class="actions">

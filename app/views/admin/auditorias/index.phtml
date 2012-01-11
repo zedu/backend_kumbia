@@ -10,6 +10,6 @@
     Table::headers('Examinar');
     Table::fields('id', 'login', 'nombres', 'rol','num_acciones');
     Table::imgLink('figuras/ver.png', 'admin/auditorias/usuario');
-    echo Table::create($usuarios);
+    echo Table::create($usuarios, 'class="zebra-striped bordered-table"');
     ?>
 </div>
