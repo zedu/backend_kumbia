@@ -19,8 +19,8 @@
                 <?php echo Form::text('filtro.accion_realizada') ?>
             </td>
             <td style="width: 100px;white-space: nowrap;">
-                <?php echo Form::submit('Aplicar Filtro') ?>                
-                <?php echo Html::linkAction('usuario/' . $usuario->id, 'Mostrar Todos') ?>                
+                <?php echo Form::submit('Aplicar Filtro','class="btn primary"') ?>                
+                <?php echo Html::linkAction('usuario/' . $usuario->id, 'Mostrar Todos','class="btn"') ?>                
             </td>
     </table>
     <?php echo Form::close() ?>

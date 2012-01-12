@@ -16,7 +16,7 @@
     <?php echo Form::select('usuario.activo', array('1' => 'Si', '0' => 'No')) ?>
 </div>
 <div class="actions">
-    <?php echo Form::submit('Guardar Datos') ?>
-    <?php echo Form::submit('Cancelar', 'name="cancelar"') ?>
+    <?php echo Form::submit('Guardar Datos', 'class="btn primary"') ?>
+    <?php echo Html::linkAction('','Cancelar','class="btn"') ?>
 </div>
 <?php echo Form::close() ?>
