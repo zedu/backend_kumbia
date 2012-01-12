@@ -616,6 +616,7 @@ label {
   min-width: 200px;
   text-align: right;
   color: #404040;
+  margin-right: 10px;
 }
 form .input {
   margin-left: 150px;
