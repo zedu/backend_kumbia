@@ -1,41 +1,35 @@
-<div id="scaffold_form">
+<div class="page-header">
     <h1><?php eh($titulo) ?></h1>
-    <div id="mensajes_flash" >        
-        <?php View::content() ?>
-    </div>
-    <?php echo Form::open() ?>
-    <?php echo Form::hidden('rol.id') ?>
-    <table>
-        <tr>
-            <td><label for="rol_rol">Nombre del rol* : </label></td>
-            <td><?php echo Form::text('rol.rol') ?></td>            
-        </tr>
-        <tr>
-            <td><label for="rol_plantilla">Plantilla a Usar : </label></td>
-            <td><?php echo Form::text('rol.plantilla') ?></td>            
-        </tr>
-        <tr>
-            <td><label for="menu2.roles_id">Padres del rol : </label></td>
-            <td id="select_padres">
-                <?php echo Form::dbSelect('menu2.roles_id', 'rol') ?>
-                <div id="roles_padres">
-                </div>
-            </td>            
-        </tr>
-        <tr>
-            <td><label for="menus_activo">Activo (Visible) : </label></td>
-            <td><?php echo Form::select('menus.activo', array('1' => 'Si', '0' => 'No')) ?></td>            
-        </tr>
-    </table>
-    <div class="actions">
-        <?php echo Form::submit('Guardar Datos') ?>
-        <?php echo Form::submit('Cancelar', 'name="cancelar"') ?>
-    </div>
-    <?php echo Form::close() ?>
 </div>
+<?php View::content() ?>
+<?php echo Form::open() ?>
+<?php echo Form::hidden('rol.id') ?>
+<div class="clearfix">
+    <label for="rol_rol">Nombre del rol* : </label>
+    <?php echo Form::text('rol.rol') ?>            
+</div>
+<div class="clearfix">
+    <label for="rol_plantilla">Plantilla a Usar : </label>
+    <?php echo Form::text('rol.plantilla') ?>            
+</div>
+<div class="clearfix" id="select_padres">
+    <label for="menu2.roles_id">Padres del rol : </label>
+    <?php echo Form::dbSelect('menu2.roles_id', 'rol') ?>
+</div>
+<div id="roles_padres" class="clearfix">
+</div>
+<div class="clearfix">
+    <label for="menus_activo">Activo (Visible) : </label>
+    <?php echo Form::select('menus.activo', array('1' => 'Si', '0' => 'No')) ?>            
+</div>
+<div class="actions">
+    <?php echo Form::submit('Guardar Datos') ?>
+    <?php echo Form::submit('Cancelar', 'name="cancelar"') ?>
+</div>
+<?php echo Form::close() ?>
 <script type="text/javascript">
     $(function(){
-        var url = $.KumbiaPHP.publicPath + "admin/roles/agregar_padre/";
+        var url = <?php echo PUBLIC_PATH ?> + "admin/roles/agregar_padre/";
         $("#select_padres select").live('change',function(){
             var padre = $('option:selected',this).text();
             if ( $("#roles_padres").html().indexOf(padre) < 0 &&

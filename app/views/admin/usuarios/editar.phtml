@@ -1,27 +1,22 @@
-<div id="scaffold_form">
-    <h1>Editar Usuario</h1>
-    <div id="mensajes_flash" >        
-        <?php View::content() ?>
-    </div>
-    <?php echo Form::open() ?>
-    <?php echo Form::hidden('usuario.id') ?>
-        <table>
-            <tr>
-                <td><label for="usuario_login">Nombre de Usuario : </label></td>
-                <td> <?php eh(strtoupper($usuario->login)) ?></td>
-            </tr>
-            <tr>
-                <td><label for="usuario_roles_id">Rol del Usuario* : </label></td>    
-                <td><?php echo Form::dbSelect('usuario.roles_id', 'rol') ?></td>
-            </tr>    
-            <tr>
-                <td><label for="usuario_activo">Activo : </label></td>
-                <td><?php echo Form::select('usuario.activo', array('1' => 'Si', '0' => 'No')) ?></td>
-            </tr>
-        </table>
-        <div class="actions">
-        <?php echo Form::submit('Guardar Datos') ?>
-        <?php echo Form::submit('Cancelar', 'name="cancelar"') ?>
-    </div>
-    <?php echo Form::close() ?>
+<div class="page-header">
+    <h1>
+        Edición del Usuario
+        <small><?php eh(strtoupper($usuario->login)) ?></small>
+    </h1>
 </div>
+<?php View::content() ?>
+<?php echo Form::open() ?>
+<?php echo Form::hidden('usuario.id') ?>
+<div class="clearfix">
+    <label for="usuario_roles_id">Rol del Usuario* : </label>   
+    <?php echo Form::dbSelect('usuario.roles_id', 'rol') ?>
+</div>
+<div class="clearfix">
+    <label for="usuario_activo">Activo : </label>
+    <?php echo Form::select('usuario.activo', array('1' => 'Si', '0' => 'No')) ?>
+</div>
+<div class="actions">
+    <?php echo Form::submit('Guardar Datos') ?>
+    <?php echo Form::submit('Cancelar', 'name="cancelar"') ?>
+</div>
+<?php echo Form::close() ?>

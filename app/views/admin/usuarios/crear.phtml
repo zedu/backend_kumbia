@@ -1,37 +1,35 @@
-<div id="scaffold_form">
+<div class="page-header">
     <h1>Crear Usuario</h1>
-    <div id="mensajes_flash" >        
-        <?php View::content() ?>
-    </div>
-    <?php echo Form::open() ?>
-    <?php echo Form::hidden('usuario.id') ?>
-    <div class="clearfix">
-        <label for="usuario_login">Nombre de Usuario (Login)* : </label>
-        <?php echo Form::text('usuario.login') ?>            
-    </div>
-    <div class="clearfix">
-        <label for="usuario_clave">Contrase&ntilde;a* : </label>
-        <?php echo Form::pass('usuario.clave') ?>            
-    </div>
-    <div class="clearfix">
-        <label for="usuario_clave2">Volver a escribir Contrase&ntilde;a* : </label>
-        <?php echo Form::pass('usuario.clave2') ?>            
-    </div>
-    <div class="clearfix">
-        <label for="usuario_nombres">Nombre Completo* : </label>
-        <?php echo Form::text('usuario.nombres') ?>            
-    </div>
-    <div class="clearfix">
-        <label for="usuario_email">Correo Electronico* : </label>
-        <?php echo Form::text('usuario.email') ?>            
-    </div>
-    <div class="clearfix">
-        <label for="usuario_roles_id">Rol del Usuario* : </label>
-        <?php echo Form::dbSelect('usuario.roles_id', 'rol') ?>            
-    </div>
-    <div class="actions">
-        <?php echo Form::submit('Guardar Datos', 'class="add"') ?>
-        <?php echo Form::submit('Cancelar', 'name="cancelar"') ?>
-    </div>
-    <?php echo Form::close() ?>
+</div>      
+<?php View::content() ?>
+<?php echo Form::open() ?>
+<?php echo Form::hidden('usuario.id') ?>
+<div class="clearfix">
+    <label for="usuario_login">Nombre de Usuario (Login)* : </label>
+    <?php echo Form::text('usuario.login') ?>            
 </div>
+<div class="clearfix">
+    <label for="usuario_clave">Contrase&ntilde;a* : </label>
+    <?php echo Form::pass('usuario.clave') ?>            
+</div>
+<div class="clearfix">
+    <label for="usuario_clave2">Volver a escribir Contrase&ntilde;a* : </label>
+    <?php echo Form::pass('usuario.clave2') ?>            
+</div>
+<div class="clearfix">
+    <label for="usuario_nombres">Nombre Completo* : </label>
+    <?php echo Form::text('usuario.nombres') ?>            
+</div>
+<div class="clearfix">
+    <label for="usuario_email">Correo Electronico* : </label>
+    <?php echo Form::text('usuario.email') ?>            
+</div>
+<div class="clearfix">
+    <label for="usuario_roles_id">Rol del Usuario* : </label>
+    <?php echo Form::dbSelect('usuario.roles_id', 'rol') ?>            
+</div>
+<div class="actions">
+    <?php echo Form::submit('Guardar Datos', 'class="add"') ?>
+    <?php echo Form::submit('Cancelar', 'name="cancelar"') ?>
+</div>
+<?php echo Form::close() ?>
