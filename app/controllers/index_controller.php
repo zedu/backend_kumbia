@@ -21,8 +21,7 @@
 * @license http://www.gnu.org/licenses/agpl.txt GNU AFFERO GENERAL PUBLIC LICENSE version 3.
 * @author Manuel José Aguirre Garcia <programador.manuel@gmail.com>
 */
-//class IndexController extends AppController {
-class IndexController extends AdminController { //por ahora siempre hay que loguearse
+class IndexController extends AppController {
 
     public function index() {
 
