@@ -23,7 +23,7 @@
 */
 Load::models('roles');
 
-class RolesController extends AppController {
+class RolesController extends AdminController {
 
     public function index($pag= 1) {
         try {

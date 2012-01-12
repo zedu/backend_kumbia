@@ -23,7 +23,7 @@
 */
 Load::models('menus');
 
-class MenuController extends AppController {
+class MenuController extends AdminController {
 
     public function index($pagina = 1) {
         try {

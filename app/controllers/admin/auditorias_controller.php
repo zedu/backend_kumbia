@@ -23,7 +23,7 @@
 */
 Load::models('auditorias', 'usuarios');
 
-class AuditoriasController extends AppController {
+class AuditoriasController extends AdminController {
 
     public function index($pag= 1) {
         try {

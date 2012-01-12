@@ -23,7 +23,7 @@
 */
 Load::models('usuarios');
 
-class UsuariosController extends AppController {
+class UsuariosController extends AdminController {
 
     public function index($pagina = 1) {
         try {

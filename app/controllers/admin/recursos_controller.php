@@ -23,7 +23,7 @@
 */
 Load::models('recursos');
 
-class RecursosController extends AppController {
+class RecursosController extends AdminController {
 
     public function index($pagina = 1) {
         try {
