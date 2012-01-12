@@ -24,6 +24,7 @@
 class Menus extends ActiveRecord {
 
 //    public $debug = true;
+//    public $logger = true;
 
     public function initialize() {
         $this->has_many('menus');
