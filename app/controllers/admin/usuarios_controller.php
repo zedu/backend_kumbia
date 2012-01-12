@@ -56,10 +56,7 @@ class UsuariosController extends AdminController {
 
     public function crear() {
         try {
-            if (Input::hasPost('cancelar')) {
-                return Router::redirect();
-            }
-            if (Input::hasPost('usuario')) {
+             if (Input::hasPost('usuario')) {
                 $usr = new Usuarios(Input::post('usuario'));
                 if ($usr->save()) {
                     Flash::valid('El Usuario Ha Sido Agregado Exitosamente...!!!');
@@ -76,9 +73,6 @@ class UsuariosController extends AdminController {
 
     public function editar($id) {
         try {
-            if (Input::hasPost('cancelar')) {
-                return Router::redirect();
-            }
 
             $id = Filter::get($id, 'digits');
 

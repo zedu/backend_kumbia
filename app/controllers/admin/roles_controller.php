@@ -38,10 +38,6 @@ class RolesController extends AdminController {
         $this->titulo = 'Crear Rol (Perfil)';
         try {
 
-            if (Input::hasPost('cancelar')) {
-                return Router::redirect();
-            }
-
             if (Input::hasPost('rol')) {
                 $rol = new Roles(Input::post('rol'));
                 if (Input::hasPost('roles_padres')) {
@@ -63,9 +59,6 @@ class RolesController extends AdminController {
     public function editar($id) {
         $this->titulo = 'Editar Rol (Perfil)';
         try {
-            if (Input::hasPost('cancelar')) {
-                return Router::redirect();
-            }
 
             $id = Filter::get($id, 'digits');
 

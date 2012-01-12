@@ -37,10 +37,6 @@ class MenuController extends AdminController {
     public function crear() {
         $this->titulo = 'Crear Menu';
         try {
-            if (Input::hasPost('cancelar')) {
-                return Router::redirect();
-            }
-
             if (Input::hasPost('menu')) {
                 $menu = new Menus(Input::post('menu'));
 
@@ -62,9 +58,6 @@ class MenuController extends AdminController {
         try {
             View::select('crear');
 
-            if (Input::hasPost('cancelar')) {
-                return Router::redirect();
-            }
             $menu = new Menus();
 
             $this->menu = $menu->find_first($id);

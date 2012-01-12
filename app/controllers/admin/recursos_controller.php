@@ -38,10 +38,6 @@ class RecursosController extends AdminController {
         try {
             $this->titulo = 'Crear Recurso';
 
-            if (Input::hasPost('cancelar')) {
-                return Router::redirect();
-            }
-
             if (Input::hasPost('recurso')) {
                 $recurso = new Recursos(Input::post('recurso'));
                 if ($recurso->save()) {
@@ -62,9 +58,6 @@ class RecursosController extends AdminController {
             $this->titulo = 'Editar Recurso';
             View::select('crear');
 
-            if (Input::hasPost('cancelar')) {
-                return Router::redirect();
-            }
             $recurso = new Recursos();
             $this->recurso = $recurso->find_first($id);
 
