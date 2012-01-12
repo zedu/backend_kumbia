@@ -3,3 +3,39 @@
     padding: 20px;
     margin-top: 70px;
 }
+
+#form_logueo{
+    width: 250px;
+    margin: 0 auto;
+    border: 1px solid #999999;
+}
+
+#form_logueo .clearfix{
+    margin-bottom: 7px;
+}
+
+#form_logueo .submit_logueo{
+    text-align: right;
+    margin-right: 30px;
+}
+
+#form_logueo .alert-message{
+    margin-right: 30px;
+}
+
+.nav{
+    float: none !important;
+}
+
+.nav .menu_salir{
+    float: right;
+}
+
+.clearfix, .alert-message{
+    margin-bottom: 7px !important;
+}
+
+table tfoot th{
+    background-color: #F5F5F5;
+    border-top: 1px solid #DDDDDD;
+}
