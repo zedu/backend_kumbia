@@ -15,7 +15,23 @@
             </div>
         </div>
         <div id="contenido" class="content">
-            <?php View::content() ?>
+            <div id="form_logueo" class="form-stacked">
+                <h3>Iniciar Sesi&oacute;n</h3>
+                <?php View::content() ?>
+                <?php echo Form::open() ?>
+                <div class="clearfix">
+                    <label for="login">Usuario </label>
+                    <?php echo Form::text('login') ?>
+                </div>
+                <div class="clearfix">
+                    <label for="clave">Contrase&ntilde;a </label>
+                    <?php echo Form::pass('clave') ?>
+                </div>
+                <div class="submit_logueo">
+                    <?php echo Form::submit('Ingresar') ?>
+                </div>
+                <?php echo Form::close() ?>
+            </div>
         </div>
         <footer>
             <p>
