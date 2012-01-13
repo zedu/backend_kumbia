@@ -34,9 +34,11 @@ class AdminController extends Controller {
             } else {
                 Flash::warning('Datos de Acceso invalidos');
                 View::select(NULL, 'logueo');
+			    return FALSE;
             }
         } else {
             View::select(NULL, 'logueo');
+			return FALSE;
         }
     }
 
