@@ -1,57 +1,54 @@
 <div class="page-header">
-    <h1>Configuraci&oacute;n de Perfil</h1>
+    <h1>Configuraci&oacute;n de Perfil <small><?php eh(strtoupper(Auth::get('login'))) ?></small></h1>
 </div>       
 <?php View::content() ?>
 <ul class="tabs" data-tabs="tabs">
-    <li class="active"><a href="#datos-personales"></a>Datos Personales</li>
+    <li class="active"><a href="#datos-personales">Datos Personales</a></li>
+    <li><a href="#clave">Contrase&ntilde;a</a></li>
 </ul>
-<div>
-    <div id="datos-personales">
+<div class="tab-content">
+    <div id="datos-personales" class="tab-pane active">
+        <?php echo Ajax::form('res-datos-personales') //Form::open() ?>
+        <fieldset>
+            <legend>Configurar Datos Personales</legend>
+            <div id="res-datos-personales" class="clearfix"></div>
+            <div class="clearfix">                
+                <label for="usuario_nombres">Nombre Completo* : </label>
+                <?php echo Form::text('usuario1.nombres') ?>
+            </div>
+            <div class="clearfix">                
+                <label for="usuario_email">Correo Electronico* : </label>
+                <?php echo Form::text('usuario1.email') ?>
+            </div>
+            </table>
+            <div class="actions">
+                <?php echo Form::submit('Guardar Cambios', 'name="datos_personas" class="btn primary"') ?>
+            </div>
+        </fieldset>
+        <?php echo Form::close() ?>
+    </div>
+    <div id="clave" class="tab-pane">
+        <?php echo Ajax::form('res-clave')//Form::open() ?>
+        <fieldset>
+            <legend>Cambiar Contrase&ntilde;a</legend>
+            <div id="res-clave" class="clearfix"></div>
+            <div class="clearfix">
+                <label for="usuario_clave">Contrase&ntilde;a Actual * : </label>
+                <?php echo Form::pass('usuario2.clave_actual') ?>
+            </div>
+            <div class="clearfix">
+                <label for="usuario_clave">Nueva Contrase&ntilde;a* : </label>
+                <?php echo Form::pass('usuario2.nueva_clave') ?>
+            </div>
+            <div class="clearfix">
+                <label for="usuario_clave2">Volver a escribir Contrase&ntilde;a* : </label>
+                <?php echo Form::pass('usuario2.nueva_clave2') ?>
+            </div>
+            <div class="actions">
+                <?php echo Form::submit('Guardar Cambios', 'name="cambiar_clave" class="btn primary"') ?>
+            </div>
+        </fieldset>
+        <?php echo Form::close() ?>
     </div>
 </div>
-<fieldset>
-    <legend>Configurar Datos Personales</legend>
-    <?php echo Form::open() ?>
-    <table>
-        <tr>
-            <td><label for="usuario_login">Nombre de Usuario : </label></td>
-            <td><b><?php eh(strtoupper($usuario1->login)) ?></b></td>
-        </tr>
-        <tr>
-            <td><label for="usuario_nombres">Nombre Completo* : </label></td>
-            <td><?php echo Form::text('usuario1.nombres') ?></td>
-        </tr>
-        <tr>
-            <td><label for="usuario_email">Correo Electronico* : </label></td>
-            <td><?php echo Form::text('usuario1.email') ?></td>
-        </tr>
-    </table>
-    <div class="actions">
-        <?php echo Form::submit('Guardar Cambios', 'name="datos_personas" class="btn primary"') ?>
-    </div>
-    <?php echo Form::close() ?>
-</fieldset>
-<br/>
-<fieldset>
-    <legend>Cambiar Contrase&ntilde;a</legend>
-    <?php echo Form::open() ?>
-    <table>
-        <tr>
-            <td><label for="usuario_clave">Contrase&ntilde;a Actual * : </label></td>
-            <td><?php echo Form::pass('usuario2.clave_actual') ?></td>
-        </tr>
-        <tr>
-            <td><label for="usuario_clave">Nueva Contrase&ntilde;a* : </label></td>
-            <td><?php echo Form::pass('usuario2.nueva_clave') ?></td>
-        </tr>
-        <tr>
-            <td><label for="usuario_clave2">Volver a escribir Contrase&ntilde;a* : </label></td>
-            <td><?php echo Form::pass('usuario2.nueva_clave2') ?></td>
-        </tr>
-    </table>
-    <div class="actions">
-        <?php echo Form::submit('Guardar Cambios', 'name="cambiar_clave" class="btn primary"') ?>
-    </div>
-    <?php echo Form::close() ?>
-</fieldset>
 <?php echo Tag::js('bootstrap-tabs'); ?>
