@@ -30,22 +30,23 @@ class AdminController extends Controller {
             }
         } elseif (Input::hasPost('login') && Input::hasPost('clave')) {
             if (MyAuth::autenticar(Input::post('login'), Input::post('clave'))) {
+                Flash::info('Bienvenido al Sistema <b>' . Auth::get('nombres') . '</b>');
                 View::template('backend');
             } else {
                 Flash::warning('Datos de Acceso invalidos');
                 View::select(NULL, 'logueo');
-			    return FALSE;
+                return FALSE;
             }
         } else {
             View::select(NULL, 'logueo');
-			return FALSE;
+            return FALSE;
         }
     }
 
     final protected function finalize() {
         
     }
-    
+
     public function logout() {
         MyAuth::cerrar_sesion();
         return Router::redirect('/');
