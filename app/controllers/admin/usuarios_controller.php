@@ -24,6 +24,12 @@
 Load::models('usuarios');
 
 class UsuariosController extends AdminController {
+    
+    public function before_filter() {
+        if ( Input::isAjax() ){
+            View::select(NULL, NULL);
+        }
+    }
 
     public function index($pagina = 1) {
         try {
