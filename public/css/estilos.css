@@ -15,9 +15,10 @@ body{
 }
 
 #form_logueo{
-    width: 250px;
+    width: 300px;
     margin: 0 auto;
     border: 1px solid #999999;
+    padding-bottom: 0px;
 }
 
 #form_logueo .clearfix{
@@ -26,11 +27,10 @@ body{
 
 #form_logueo .submit_logueo{
     text-align: right;
-    margin-right: 30px;
 }
 
-#form_logueo .alert-message{
-    margin-right: 30px;
+#form_logueo .clearfix input{
+    width: 97%;
 }
 
 .nav{
