@@ -2,6 +2,13 @@
     <h1>Configuraci&oacute;n de Perfil</h1>
 </div>       
 <?php View::content() ?>
+<ul class="tabs" data-tabs="tabs">
+    <li class="active"><a href="#datos-personales"></a>Datos Personales</li>
+</ul>
+<div>
+    <div id="datos-personales">
+    </div>
+</div>
 <fieldset>
     <legend>Configurar Datos Personales</legend>
     <?php echo Form::open() ?>
@@ -47,3 +54,4 @@
     </div>
     <?php echo Form::close() ?>
 </fieldset>
+<?php echo Tag::js('bootstrap-tabs'); ?>
