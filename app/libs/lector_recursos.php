@@ -30,12 +30,17 @@ class LectorRecursos {
     public static function obtenerRecursos() {
         self::escanearDir();
         self::escanearControladores();
+        return self::$_recursos;
     }
 
     public static function recursosPaginados($pagina = 1, $por_pagina = 10) {
+        return self::paginar(self::obtenerRecursos(), "page: $pagina", "per_page: $por_pagina");
+    }
+
+    public static function paginar($recursos, $pagina = 1, $por_pagina = 10) {
         require_once CORE_PATH . 'libs/kumbia_active_record/behaviors/paginate.php';
         self::obtenerRecursos();
-        return Paginator::paginate(self::$_recursos, "page: $pagina", "per_page: $por_pagina");
+        return Paginator::paginate($recursos, "page: $pagina", "per_page: $por_pagina");
     }
 
     protected static function escanearDir($modulo = NUll) {
