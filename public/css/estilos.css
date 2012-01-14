@@ -57,3 +57,11 @@ table tfoot th{
     margin: 0 -20px;
     padding: 20px;
 }
+
+.left{
+    float: left;
+}
+
+.right{
+    float: right;
+}
