@@ -30,7 +30,12 @@ class LectorRecursos {
     public static function obtenerRecursos() {
         self::escanearDir();
         self::escanearControladores();
-        var_dump(self::$_controladores);
+    }
+
+    public static function recursosPaginados($pagina = 1, $por_pagina = 10) {
+        require_once CORE_PATH . 'libs/kumbia_active_record/behaviors/paginate.php';
+        self::obtenerRecursos();
+        return Paginator::paginate(self::$_recursos, "page: $pagina", "per_page: $por_pagina");
     }
 
     protected static function escanearDir($modulo = NUll) {
@@ -41,7 +46,7 @@ class LectorRecursos {
             if (strpos($e, '_controller.php')) {
                 self::$_controladores[] = array(
                     'dir' => "$dir/$e",
-                    'class' => str_replace('.php', '', $e),
+                    'controlador' => str_replace('_controller.php', '', $e),
                     'modulo' => $modulo
                 );
             } elseif ($e !== '.' && $e !== '..') {
@@ -55,12 +60,23 @@ class LectorRecursos {
 
     protected static function escanearControladores() {
         foreach (self::$_controladores as $e) {
-            if (!class_exists($e['class']))
-                require_once $e['dir'];
-            if ($metodos = get_class_methods($e['class'])) {
+            $modulo = $e['modulo'] ? $e['modulo'] . '/' : NULL;
+            LectorClases::leerDir($e['dir']);
+            self::$_recursos[] = array(
+                'recurso' => "$modulo{$e['controlador']}/*",
+                'modulo' => $e['modulo'],
+                'controlador' => $e['controlador'],
+                'accion' => NULL
+            );
+            if ($metodos = LectorClases::getMetodosPublicos()) {
                 foreach ($metodos as $metodo) {
                     if ($metodo !== '__contruct' && $metodo !== '_callback') {
-                        //self::$_recursos[] =
+                        self::$_recursos[] = array(
+                            'recurso' => "$modulo{$e['controlador']}/$metodo",
+                            'modulo' => $e['modulo'],
+                            'controlador' => $e['controlador'],
+                            'accion' => $metodo
+                        );
                     }
                 }
             }
