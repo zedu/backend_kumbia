@@ -36,10 +36,10 @@ body{
 .nav{
     float: none !important;
 }
-
+/*
 .nav .menu_salir{
     float: right;
-}
+}*/
 
 .clearfix, .alert-message{
     margin-bottom: 7px !important;
