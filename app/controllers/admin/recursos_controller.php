@@ -123,4 +123,9 @@ class RecursosController extends AdminController {
         return Router::redirect();
     }
 
+    public function escaner() {
+        $this->recursos = LectorRecursos::obtenerRecursos();
+        die;
+    }
+
 }
