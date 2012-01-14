@@ -75,7 +75,7 @@ class LectorRecursos {
             );
             if ($metodos = LectorClases::getMetodosPublicos()) {
                 foreach ($metodos as $metodo) {
-                    if ($metodo !== '__contruct' && $metodo !== '_callback') {
+                    if ($metodo !== '__contruct') {
                         self::$_recursos[] = array(
                             'recurso' => "$modulo{$e['controlador']}/$metodo",
                             'modulo' => $e['modulo'],
