@@ -24,38 +24,46 @@
  */
 class LectorRecursos {
 
+    public static $_controladores;
     public static $_recursos;
 
     public static function obtenerRecursos() {
         self::escanearDir();
         self::escanearControladores();
-        var_dump(self::$_recursos);
+        var_dump(self::$_controladores);
     }
 
-    protected static function escanearDir($dir = NUll) {
-        $dir = $dir ? $dir : APP_PATH . 'controllers';
+    protected static function escanearDir($modulo = NUll) {
+        $dir = APP_PATH . 'controllers' . ( $modulo ? "/$modulo" : '' );
         $res = scandir($dir);
         $modulos = array();
         foreach ($res as $e) {
             if (strpos($e, '_controller.php')) {
-                self::$_recursos[] = array(
+                self::$_controladores[] = array(
                     'dir' => "$dir/$e",
-                    'class' => Util::camelcase(str_replace('.php', '', $e)),
+                    'class' => str_replace('.php', '', $e),
+                    'modulo' => $modulo
                 );
             } elseif ($e !== '.' && $e !== '..') {
                 $modulos[] = $e;
             }
         }
         foreach ($modulos as $mod) {
-            self::escanearDir("$dir/$mod");
+            self::escanearDir($mod);
         }
     }
 
     protected static function escanearControladores() {
-        foreach (self::$_recursos as $e) {
+        foreach (self::$_controladores as $e) {
             if (!class_exists($e['class']))
-                require_once $e['dir']; 
-            var_dump($e['dir'],get_class_methods($e['class']));
+                require_once $e['dir'];
+            if ($metodos = get_class_methods($e['class'])) {
+                foreach ($metodos as $metodo) {
+                    if ($metodo !== '__contruct' && $metodo !== '_callback') {
+                        //self::$_recursos[] =
+                    }
+                }
+            }
         }
     }
 
