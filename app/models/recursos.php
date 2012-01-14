@@ -72,7 +72,7 @@ class Recursos extends ActiveRecord {
         if ($recursos_chequeados) {
             foreach ($recursos_chequeados as $valor) {
                 if (empty($descripciones[$valor])) {
-                    Flash::error('Existen Recursos Seleccionados que no tiene especificada una Descripción');
+                    Flash::error('Existen Recursos Seleccionados que no tienen especificada una Descripción');
                     return FALSE;
                 }
                 $data = null;
