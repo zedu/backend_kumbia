@@ -125,17 +125,21 @@ class RecursosController extends AdminController {
     }
 
     public function escaner($pagina = 1) {
-        $recurso = new Recursos();
-        $this->recursos = $recurso->obtener_recursos_nuevos($pagina);
-        if (Input::hasPost('guardar')) {
-            if ($recurso->guardar_nuevos()) {
-                $this->recursos = $recurso->obtener_recursos_nuevos($pagina);
-                Input::delete();
-                Flash::valid('Los Recursos Fueron Guardados Exitosamente...!!!');
-                Acciones::add('Agrego Nuevos Recursos al Sistema', 'recursos');
-            } else {
-                Flash::warning('Por favor Complete los datos requeridos he intente guardar nuevamente');
+        try {
+            $recurso = new Recursos();
+            $this->recursos = $recurso->obtener_recursos_nuevos($pagina);
+            if (Input::hasPost('guardar')) {
+                if ($recurso->guardar_nuevos()) {
+                    $this->recursos = $recurso->obtener_recursos_nuevos($pagina);
+                    Input::delete();
+                    Flash::valid('Los Recursos Fueron Guardados Exitosamente...!!!');
+                    Acciones::add('Agrego Nuevos Recursos al Sistema', 'recursos');
+                } else {
+                    Flash::warning('Por favor Complete los datos requeridos he intente guardar nuevamente');
+                }
             }
+        } catch (KumbiaException $e) {
+            View::excepcion($e);
         }
     }
 
