@@ -1,26 +1,27 @@
 <?php
+
 /**
-* Backend - KumbiaPHP Backend
-* PHP version 5
-* LICENSE
-*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU Affero General Public License as
-* published by the Free Software Foundation, either version 3 of the
-* License, or (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* ERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU Affero General Public License for more details.
-*
-* You should have received a copy of the GNU Affero General Public License
-* along with this program. If not, see <http://www.gnu.org/licenses/>.
-*
-* @package Modelos
-* @license http://www.gnu.org/licenses/agpl.txt GNU AFFERO GENERAL PUBLIC LICENSE version 3.
-* @author Manuel José Aguirre Garcia <programador.manuel@gmail.com>
-*/
+ * Backend - KumbiaPHP Backend
+ * PHP version 5
+ * LICENSE
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * ERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @package Modelos
+ * @license http://www.gnu.org/licenses/agpl.txt GNU AFFERO GENERAL PUBLIC LICENSE version 3.
+ * @author Manuel José Aguirre Garcia <programador.manuel@gmail.com>
+ */
 class Menus extends ActiveRecord {
 
 //    public $debug = true;
@@ -71,8 +72,10 @@ class Menus extends ActiveRecord {
     protected function obtener_condicion_roles_padres($id_rol) {
         $rol = Load::model('roles')->find_first($id_rol);
         $roles = array("rr.roles_id = '{$rol->id}'");
-        foreach (explode(',', $rol->padres) as $e) {
-            $roles[] = "rr.roles_id = '$e'";
+        if ($rol->padres) {
+            foreach (explode(',', $rol->padres) as $e) {
+                $roles[] = "rr.roles_id = '$e'";
+            }
         }
         return join(' OR ', $roles);
     }
