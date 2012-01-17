@@ -23,7 +23,7 @@
 */
 Load::models('menus');
 
-class MenuController extends AppController {
+class MenuController extends AdminController {
 
     public function index($pagina = 1) {
         try {
@@ -37,10 +37,6 @@ class MenuController extends AppController {
     public function crear() {
         $this->titulo = 'Crear Menu';
         try {
-            if (Input::hasPost('cancelar')) {
-                return Router::redirect();
-            }
-
             if (Input::hasPost('menu')) {
                 $menu = new Menus(Input::post('menu'));
 
@@ -62,9 +58,6 @@ class MenuController extends AppController {
         try {
             View::select('crear');
 
-            if (Input::hasPost('cancelar')) {
-                return Router::redirect();
-            }
             $menu = new Menus();
 
             $this->menu = $menu->find_first($id);

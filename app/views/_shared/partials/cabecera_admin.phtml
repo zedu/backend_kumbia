@@ -1,0 +1,18 @@
+<div id='cabecera' class="topbar">
+    <div class="fill">
+        <div class="container">
+            <h3><a>Modulo de Administracion</a></h3>
+            <?php View::renderMenu() ?>
+            <ul class="secondary-nav" data-dropdown="true">
+                <li>
+                    <a class="dropdown-toggle" href="#" style="text-transform: capitalize;">
+                        <?php echo Auth::get('nombres') ?>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><?php echo Html::link('admin/index/logout', 'Salir') ?></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

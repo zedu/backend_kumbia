@@ -1,29 +1,30 @@
 <?php
+
 /**
-* Backend - KumbiaPHP Backend
-* PHP version 5
-* LICENSE
-*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU Affero General Public License as
-* published by the Free Software Foundation, either version 3 of the
-* License, or (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* ERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU Affero General Public License for more details.
-*
-* You should have received a copy of the GNU Affero General Public License
-* along with this program. If not, see <http://www.gnu.org/licenses/>.
-*
-* @package Controller
-* @license http://www.gnu.org/licenses/agpl.txt GNU AFFERO GENERAL PUBLIC LICENSE version 3.
-* @author Manuel José Aguirre Garcia <programador.manuel@gmail.com>
-*/
+ * Backend - KumbiaPHP Backend
+ * PHP version 5
+ * LICENSE
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * ERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @package Controller
+ * @license http://www.gnu.org/licenses/agpl.txt GNU AFFERO GENERAL PUBLIC LICENSE version 3.
+ * @author Manuel José Aguirre Garcia <programador.manuel@gmail.com>
+ */
 Load::models('recursos');
 
-class RecursosController extends AppController {
+class RecursosController extends AdminController {
 
     public function index($pagina = 1) {
         try {
@@ -37,10 +38,6 @@ class RecursosController extends AppController {
     public function crear() {
         try {
             $this->titulo = 'Crear Recurso';
-
-            if (Input::hasPost('cancelar')) {
-                return Router::redirect();
-            }
 
             if (Input::hasPost('recurso')) {
                 $recurso = new Recursos(Input::post('recurso'));
@@ -62,9 +59,6 @@ class RecursosController extends AppController {
             $this->titulo = 'Editar Recurso';
             View::select('crear');
 
-            if (Input::hasPost('cancelar')) {
-                return Router::redirect();
-            }
             $recurso = new Recursos();
             $this->recurso = $recurso->find_first($id);
 
@@ -128,6 +122,25 @@ class RecursosController extends AppController {
             View::excepcion($e);
         }
         return Router::redirect();
+    }
+
+    public function escaner($pagina = 1) {
+        try {
+            $recurso = new Recursos();
+            $this->recursos = $recurso->obtener_recursos_nuevos($pagina);
+            if (Input::hasPost('guardar')) {
+                if ($recurso->guardar_nuevos()) {
+                    $this->recursos = $recurso->obtener_recursos_nuevos($pagina);
+                    Input::delete();
+                    Flash::valid('Los Recursos Fueron Guardados Exitosamente...!!!');
+                    Acciones::add('Agrego Nuevos Recursos al Sistema', 'recursos');
+                } else {
+                    Flash::warning('Por favor Complete los datos requeridos he intente guardar nuevamente');
+                }
+            }
+        } catch (KumbiaException $e) {
+            View::excepcion($e);
+        }
     }
 
 }

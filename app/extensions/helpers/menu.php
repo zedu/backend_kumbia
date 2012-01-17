@@ -1,26 +1,27 @@
 <?php
+
 /**
-* Backend - KumbiaPHP Backend
-* PHP version 5
-* LICENSE
-*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU Affero General Public License as
-* published by the Free Software Foundation, either version 3 of the
-* License, or (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* ERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU Affero General Public License for more details.
-*
-* You should have received a copy of the GNU Affero General Public License
-* along with this program. If not, see <http://www.gnu.org/licenses/>.
-*
-* @package Helper
-* @license http://www.gnu.org/licenses/agpl.txt GNU AFFERO GENERAL PUBLIC LICENSE version 3.
-* @author Manuel José Aguirre Garcia <programador.manuel@gmail.com>
-*/
+ * Backend - KumbiaPHP Backend
+ * PHP version 5
+ * LICENSE
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * ERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @package Helper
+ * @license http://www.gnu.org/licenses/agpl.txt GNU AFFERO GENERAL PUBLIC LICENSE version 3.
+ * @author Manuel José Aguirre Garcia <programador.manuel@gmail.com>
+ */
 Load::models('menus');
 
 class Menu {
@@ -38,7 +39,7 @@ class Menu {
         $registros = $rL->obtener_menu_por_rol($id_rol);
         $html = '';
         if ($registros) {
-            $html .= '<ul>' . PHP_EOL;
+            $html .= '<ul class="nav" data-dropdown="dropdown">' . PHP_EOL;
             foreach ($registros as $e) {
                 $html .= self::generarItems($e);
             }
@@ -48,13 +49,18 @@ class Menu {
     }
 
     protected static function generarItems($objeto_menu) {
-        //$class = self::es_activa($objeto_menu->url) ? 'menu_activo' : '';
-        $class = 'menu_' . str_replace('/', '_', $objeto_menu->url);
-        $html = "<li class='{$class} {$objeto_menu->clases}'>" .
-                Html::link($objeto_menu->url, $objeto_menu->nombre) . PHP_EOL;
         $sub_menu = $objeto_menu->get_sub_menus(self::$_id_rol);
+        $class = 'menu_' . str_replace('/', '_', $objeto_menu->url);
         if ($sub_menu) {
-            $html .= '<ul style="display:none">' . PHP_EOL;
+            $html = "<li class='{$class} dropdown {$objeto_menu->clases}'>" .
+                    Html::link($objeto_menu->url, $objeto_menu->nombre ,'class="dropdown-toggle"') . PHP_EOL;
+                    //"<a href='#' class='dropdown-toggle'>$objeto_menu->nombre</a>" . PHP_EOL;
+        } else {
+            $html = "<li class='{$class} {$objeto_menu->clases}'>" .
+                    Html::link($objeto_menu->url, $objeto_menu->nombre) . PHP_EOL;
+        }
+        if ($sub_menu) {
+            $html .= '<ul class="dropdown-menu">' . PHP_EOL;
             foreach ($sub_menu as $e) {
                 $html .= self::generarItems($e);
             }

@@ -23,7 +23,13 @@
 */
 Load::models('usuarios');
 
-class UsuariosController extends AppController {
+class UsuariosController extends AdminController {
+    
+    protected function before_filter() {
+        if ( Input::isAjax() ){
+            View::select(NULL, NULL);
+        }
+    }
 
     public function index($pagina = 1) {
         try {
@@ -56,10 +62,7 @@ class UsuariosController extends AppController {
 
     public function crear() {
         try {
-            if (Input::hasPost('cancelar')) {
-                return Router::redirect();
-            }
-            if (Input::hasPost('usuario')) {
+             if (Input::hasPost('usuario')) {
                 $usr = new Usuarios(Input::post('usuario'));
                 if ($usr->save()) {
                     Flash::valid('El Usuario Ha Sido Agregado Exitosamente...!!!');
@@ -76,9 +79,6 @@ class UsuariosController extends AppController {
 
     public function editar($id) {
         try {
-            if (Input::hasPost('cancelar')) {
-                return Router::redirect();
-            }
 
             $id = Filter::get($id, 'digits');
 

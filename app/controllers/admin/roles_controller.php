@@ -23,7 +23,7 @@
 */
 Load::models('roles');
 
-class RolesController extends AppController {
+class RolesController extends AdminController {
 
     public function index($pag= 1) {
         try {
@@ -37,10 +37,6 @@ class RolesController extends AppController {
     public function crear() {
         $this->titulo = 'Crear Rol (Perfil)';
         try {
-
-            if (Input::hasPost('cancelar')) {
-                return Router::redirect();
-            }
 
             if (Input::hasPost('rol')) {
                 $rol = new Roles(Input::post('rol'));
@@ -63,9 +59,6 @@ class RolesController extends AppController {
     public function editar($id) {
         $this->titulo = 'Editar Rol (Perfil)';
         try {
-            if (Input::hasPost('cancelar')) {
-                return Router::redirect();
-            }
 
             $id = Filter::get($id, 'digits');
 

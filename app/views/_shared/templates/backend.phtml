@@ -1,27 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <meta http-equiv='Content-type' content='text/html; charset=<?php echo APP_CHARSET ?>' />
+        <meta charset='<?php echo APP_CHARSET ?>' />
         <title><?php echo Config::get('config.application.name') ?></title>
-        <?php Tag::css('scaffold') ?>
         <?php View::partial('css') ?>
         <?php View::partial('js') ?>
     </head>
     <body>
-        <div id='cabecera'>
-            <h1>Modulo de Administracion</h1>
-        </div>
-        <div id="menu_horizontal">
-            <?php View::renderMenu() ?>
-        </div>
-        <div id="contenido">
-            <?php View::content(); ?>
-        </div>
-        <div id="pie">
-            <p>
-                <?php echo 'Tiempo: ' . round((microtime(1) - START_TIME), 4) . ' seg.';
-                echo ', Memoria Usada: ' . number_format(memory_get_usage() / 1048576, 2) . ' MB'; ?>
-            </p>
+        <?php View::partial('cabecera_admin') ?>        
+        <div class="container">
+            <div id="contenido" class="content">
+                <?php View::content(); ?>
+            </div>
+            <?php View::partial('pie') ?>   
         </div>
     </body>
 </html>

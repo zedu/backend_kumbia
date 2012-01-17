@@ -21,35 +21,10 @@
 * @license http://www.gnu.org/licenses/agpl.txt GNU AFFERO GENERAL PUBLIC LICENSE version 3.
 * @author Manuel José Aguirre Garcia <programador.manuel@gmail.com>
 */
+/* hola como estas */
 class IndexController extends AppController {
 
-    public function after_filter() {
-        if (MyAuth::es_valido()) {
-            Router::redirect('admin/usuarios');
-        }
-    }
-
     public function index() {
-        try {
-            View::template('default');
 
-            $usuario = Load::model('usuarios');
-
-            if (Input::hasPost('login') && Input::hasPost('clave')) {
-                if (MyAuth::autenticar(Input::post('login'), Input::post('clave'))) {
-                    return Router::redirect('admin/usuarios');
-                } else {
-                    Flash::warning('Datos de Acceso invalidos');
-                }
-            }
-        } catch (KumbiaException $e) {
-            View::excepcion($e);
-        }
     }
-
-    public function logout() {
-        MyAuth::cerrar_sesion();
-        return Router::redirect();
-    }
-
 }

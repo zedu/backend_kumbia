@@ -1,52 +1,49 @@
-<div id="scaffold_form">
+<div class="page-header">
     <h1>Configuraci&oacute; General</h1>
-    <?php View::content() ?>
-    <br/>
-    <?php echo Form::open() ?>
-    <table>
-        <tr>
-            <td><label for="config_name">T&iacute;tulo del Proyecto : </label></td>
-            <td><?php echo Form::text('config.name') ?></td>
-        </tr>
-        <tr>
-            <td><label for="config_production">Proyecto en Producci&oacute;n : </label></td>
-            <td><?php echo Form::select('config.production', array('On' => 'Si', 'Off' => 'No')) ?></td>
-        </tr>
-        <tr>
-            <td><label for="config_dbdate">Formato de Fechas : </label></td>
-            <td><?php echo Form::text('config.dbdate') ?></td>
-        </tr>
-        <tr>
-            <td><label for="config_debug">Debug : </label></td>
-            <td><?php echo Form::select('config.debug', array('On' => 'Si', 'Off' => 'No')) ?></td>
-        </tr>
-        <tr>
-            <td><label for="config_log_exceptions">Mostrar Excepciones : </label></td>
-            <td><?php echo Form::select('config.log_exceptions', array('On' => 'Si', 'Off' => 'No')) ?></td>
-        </tr>
-        <tr>
-            <td><label for="config_charset">Codificaci&oacute;n de Caracteres : </label></td>
-            <td><?php echo Form::text('config.charset') ?></td>
-        </tr>
-        <tr>
-            <td><label for="config_cache_driver">Driver de Cache : </label></td>
-            <td><?php echo Form::text('config.cache_driver') ?></td>
-        </tr>
-        <tr>
-            <td><label for="config_minimo_clave">Caracteres M&iacute;nimo Clave : </label></td>
-            <td><?php echo Form::text('config.minimo_clave') ?></td>
-        </tr>
-        <tr>
-            <td><label for="config_guardar_auditorias">Auditorias Activa : </label></td>
-            <td><?php echo Form::select('config.guardar_auditorias', array('On' => 'Si', 'Off' => 'No')) ?></td>
-        </tr>
-        <tr>
-            <td><label for="config_guardar_auditorias">Intentos de Acceso : </label></td>
-            <td><?php echo Form::select('config.intentos_acceso', array(1 => 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)) ?></td>
-        </tr>
-    </table>
-    <div class="actions">
-        <?php echo Form::submit('Guardar Configuración') ?>
-    </div>
-    <?php echo Form::close() ?>
 </div>
+<?php View::content() ?>
+<?php echo Form::open() ?>
+<div class="clearfix">
+    <label for="config_name">T&iacute;tulo del Proyecto : </label>
+    <?php echo Form::text('config.name') ?>
+</div>
+<div class="clearfix">
+    <label for="config_production">Proyecto en Producci&oacute;n : </label>
+    <?php echo Form::select('config.production', array('On' => 'Si', 'Off' => 'No')) ?>
+</div>
+<div class="clearfix">
+    <label for="config_dbdate">Formato de Fechas : </label>
+    <?php echo Form::text('config.dbdate') ?>
+</div>
+<div class="clearfix">
+    <label for="config_debug">Debug : </label>
+    <?php echo Form::select('config.debug', array('On' => 'Si', 'Off' => 'No')) ?>
+</div>
+<div class="clearfix">
+    <label for="config_log_exceptions">Mostrar Excepciones : </label>
+    <?php echo Form::select('config.log_exceptions', array('On' => 'Si', 'Off' => 'No')) ?>
+</div>
+<div class="clearfix">
+    <label for="config_charset">Codificaci&oacute;n de Caracteres : </label>
+    <?php echo Form::text('config.charset') ?>
+</div>
+<div class="clearfix">
+    <label for="config_cache_driver">Driver de Cache : </label>
+    <?php echo Form::text('config.cache_driver') ?>
+</div>
+<div class="clearfix">
+    <label for="config_minimo_clave">Caracteres M&iacute;nimo Clave : </label>
+    <?php echo Form::text('config.minimo_clave') ?>
+</div>
+<div class="clearfix">
+    <label for="config_guardar_auditorias">Auditorias Activa : </label>
+    <?php echo Form::select('config.guardar_auditorias', array('On' => 'Si', 'Off' => 'No')) ?>
+</div>
+<div class="clearfix">
+    <label for="config_guardar_auditorias">Intentos de Acceso : </label>
+    <?php echo Form::select('config.intentos_acceso', array(1 => 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)) ?>
+</div>
+<div class="actions">
+    <?php echo Form::submit('Guardar Configuración', 'class="btn primary"') ?>
+</div>
+<?php echo Form::close() ?>
