@@ -59,10 +59,11 @@ class Usuarios extends ActiveRecord {
     }
 
     public function obtener_usuarios_con_num_acciones($pagina = 1) {
-        $cols = "usuarios.*,roles.rol,COUNT(auditorias.id)num_acciones";
+        $cols = "usuarios.*,roles.rol,COUNT(auditorias.id) as num_acciones";
         $join = "INNER JOIN roles ON roles.id = usuarios.roles_id ";
         $join .= "LEFT JOIN auditorias ON usuarios.id = auditorias.usuarios_id";
-        return $this->paginate("page: $pagina", "columns: $cols", "join: $join", "group: usuarios.id");
+        $group = 'usuarios.' . join(',usuarios.' , $this->fields);
+        return $this->paginate("page: $pagina", "columns: $cols", "join: $join", "group: $group");
     }
     
     public function cambiar_clave($datos) {
