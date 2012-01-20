@@ -31,7 +31,7 @@ class MyAuth {
         $auth = new Auth('class: usuarios',
                         'login: ' . $user,
                         'clave: ' . $pass,
-                        'activo: 1');
+                        "activo: 1");
         if ($auth->authenticate()) {
             Session::set(self::$_clave_sesion . '_sesion_activa', true);
         }
