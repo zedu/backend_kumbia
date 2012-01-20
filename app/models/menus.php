@@ -45,17 +45,17 @@ class Menus extends ActiveRecord {
         $joins = "INNER JOIN roles_recursos AS rr ON m.recursos_id = rr.recursos_id ";
         $joins .= " AND ( " . $this->obtener_condicion_roles_padres($id_rol) . " ) ";
         $joins .= 'INNER JOIN recursos AS re ON re.activo = TRUE AND re.id = rr.recursos_id ';
-        $condiciones = " m.menus_id is NULL AND m.activo = TRUE ";
+        $condiciones = " m.menus_id is NULL AND m.activo = 1 ";
         $orden = 'm.posicion';
         $agrupar_por = 'm.id';
         return $this->find_all_by_sql("SELECT $select FROM $from $joins WHERE $condiciones GROUP BY $agrupar_por ORDER BY $orden");
     }
 
     public function get_sub_menus($id_rol) {
-        $join = 'INNER JOIN recursos as r ON r.id = menus.recursos_id AND r.activo = TRUE ';
+        $join = 'INNER JOIN recursos as r ON r.id = menus.recursos_id AND r.activo = 1 ';
         $join .= 'INNER JOIN roles_recursos as rr ON r.id = rr.recursos_id ';
         $join .= ' AND (rr.roles_id = "' . $id_rol . '" OR ' . $this->obtener_condicion_roles_padres($id_rol) . ')';
-        return $this->find("menus.menus_id = '{$this->id}' AND menus.activo = TRUE", "join: $join", 'columns: menus.*, r.recurso', 'order: menus.posicion', 'group: menus.id');
+        return $this->find("menus.menus_id = '{$this->id}' AND menus.activo = 1", "join: $join", 'columns: menus.*, r.recurso', 'order: menus.posicion', 'group: menus.id');
     }
 
     public function menus_paginados($pagina) {
