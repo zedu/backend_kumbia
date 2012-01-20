@@ -77,6 +77,14 @@ class Table {
      * @var string
      */
     static protected $_type_paginator = null;
+    
+    /**
+     * Indica si se usaran los campos del modelo por defecto ó
+     * si se mostraran los que el usuario especifique
+     *
+     * @var boolean 
+     */
+    static protected $_use_default_fields = true;
 
     /**
      * Establece|añade los nombres de las cabeceras de las columnas de la tabla
@@ -119,6 +127,7 @@ class Table {
             $params = $params[0];
         }
         self::$_fields = array_merge(self::$_fields, $params);
+        self::$_use_default_fields = false;
     }
 
     /**
@@ -134,7 +143,7 @@ class Table {
             self::$_paginator = $model;
             $model = $model->items;
         }
-        if ( !sizeof(self::$_headers) || !sizeof(self::$_fields) ){
+        if (self::$_use_default_fields) {
             self::get_table_schema($model);
         }
         $table = "<table $attrs>";
@@ -559,8 +568,8 @@ class Table {
      */
     protected static function get_table_schema($model) {
         if ($model) {
-            self::$_fields = current($model)->fields;
-            self::$_headers = current($model)->alias;
+            self::$_fields = array_merge(current($model)->fields, self::$_fields);
+            self::$_headers = array_merge(current($model)->alias, self::$_headers);
         }
     }
 
