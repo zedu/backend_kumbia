@@ -54,7 +54,7 @@ class Recursos extends ActiveRecord {
     public function obtener_recursos_nuevos($pagina = 1) {
         $recursos = LectorRecursos::obtenerRecursos();
         foreach ($recursos as $index => $re) {
-            if ($this->exists('recurso = "' . $re['recurso'] . '"')) {
+            if ($this->exists('recurso = \'' . $re['recurso'] . '\'')) {
                 unset($recursos[$index]);
             }
         }
