@@ -16,11 +16,11 @@
                 <tr>
                     <th rowspan="2"style="width: 200px">Recursos</th>
                     <th rowspan="2" style="width: 300px">Descripcion</th>
-                    <th colspan="<?php echo count($roles) ?>" style="text-align: center">Roles</th>
+                    <th colspan="<?php echo count($roles) ?>" style="text-align: center; border-bottom:1px solid #DDD;">Roles</th>
                 </tr>
                 <tr>
                     <?php foreach ($roles as $e) : ?>
-                        <th style="text-align: center">
+                        <th style="text-align: center;border-left:1px solid #DDD;">
                             <a href="#" id="check_rol_<?php eh($e->id) ?>" class="check_roles">                                
                                 <?php eh($e->rol) ?>
                             </a>
