@@ -32,9 +32,7 @@ class RolesRecursos extends ActiveRecord {
 
     public function obtener_privilegios() {
         $privilegios = array();
-        $ids = array();
         foreach ($this->find() as $e) {
-            $privilegios[] = "{$e->roles_id}-{$e->recursos_id}";
             $privilegios["{$e->roles_id}-{$e->recursos_id}"] = $e->id;
         }
         return $privilegios;
