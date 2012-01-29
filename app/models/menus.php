@@ -44,10 +44,10 @@ class Menus extends ActiveRecord {
         $from = 'menus as m';
         $joins = "INNER JOIN roles_recursos AS rr ON m.recursos_id = rr.recursos_id ";
         $joins .= " AND ( " . $this->obtener_condicion_roles_padres($id_rol) . " ) ";
-        $joins .= 'INNER JOIN recursos AS re ON re.activo = TRUE AND re.id = rr.recursos_id ';
+        $joins .= 'INNER JOIN recursos AS re ON re.activo = 1 AND re.id = rr.recursos_id ';
         $condiciones = " m.menus_id is NULL AND m.activo = 1 ";
         $orden = 'm.posicion';
-        $agrupar_por = 'm.' . join(',m.', $this->fields);
+        $agrupar_por = 'm.' . join(',m.', $this->fields) . ',re.recurso';
         return $this->find_all_by_sql("SELECT $select FROM $from $joins WHERE $condiciones GROUP BY $agrupar_por ORDER BY $orden");
     }
 
@@ -55,13 +55,13 @@ class Menus extends ActiveRecord {
         $campos = 'menus.' . join(',menus.', $this->fields) . ',r.recurso';
         $join = 'INNER JOIN recursos as r ON r.id = menus.recursos_id AND r.activo = 1 ';
         $join .= 'INNER JOIN roles_recursos as rr ON r.id = rr.recursos_id ';
-        $join .= ' AND (rr.roles_id = "' . $id_rol . '" OR ' . $this->obtener_condicion_roles_padres($id_rol) . ')';
-        $agrupar_por = 'menus.' . join(',menus.', $this->fields);
+        $join .= ' AND (rr.roles_id = \'' . $id_rol . '\' OR ' . $this->obtener_condicion_roles_padres($id_rol) . ')';
+        $agrupar_por = 'menus.' . join(',menus.', $this->fields) . ',r.recurso';
         return $this->find("menus.menus_id = '{$this->id}' AND menus.activo = 1", "join: $join", "columns: $campos", 'order: menus.posicion', "group: $agrupar_por");
     }
 
     public function menus_paginados($pagina) {
-        $cols = 'menus.' . join(',menus.', $this->fields) . ",r.recurso,(m2.nombre)padre";
+        $cols = 'menus.' . join(',menus.', $this->fields) . ",r.recurso,m2.nombre as padre";
         $joins = 'INNER JOIN recursos as r ON r.id = recursos_id ';
         $joins .= 'LEFT JOIN menus as m2 ON m2.id = menus.menus_id ';
         return $this->paginate("page: $pagina", "columns: $cols", "join: $joins");

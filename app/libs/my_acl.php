@@ -47,7 +47,7 @@ class MyAcl {
 
         self::$_acl = Acl2::factory();
 
-        $roles = Load::model('roles')->find('activo = TRUE');
+        $roles = Load::model('roles')->find('activo = 1');
 
         $this->_establecerRoles($roles);
     }
